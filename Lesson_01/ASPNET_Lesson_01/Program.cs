@@ -16,7 +16,7 @@ namespace ASPNET_Lesson_01
 		/// <summary>Id последнего поста из списка который нужно получить</summary>
 		private static readonly int LastPostId = 13;
 		/// <summary>Имя файла в который будет сохранен результат</summary>
-		private static readonly string fileName = "output.txt";
+		private static readonly string fileName = "result.txt";
 
 		static async Task Main(string[] args)
 		{
