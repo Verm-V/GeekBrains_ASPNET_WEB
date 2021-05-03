@@ -20,29 +20,37 @@ namespace ASPNET_Lesson_01
 
 		static async Task Main(string[] args)
 		{
+			Console.WriteLine($"Запрос постов с {FirstPostId} по {LastPostId}");
+
 			// Список задач на получение постов
 			var tasks = new List<Task<Post>>();
+			// Получаем все посты в цикле асинхронно
+			for (int i = FirstPostId; i <= LastPostId; i++)
+			{
+				tasks.Add(GetPostById(i));
+			}
 
-			// Получаем нужные посты
+			// Ждем пока все посты соберуться
+			var allTasks = Task.WhenAll(tasks);
 			try
 			{
-				for (int i = FirstPostId; i <= LastPostId; i++)
-				{
-					tasks.Add(GetPostById(i));
-				}
-
-				// Ждем пока все посты соберуться
-				await Task.WhenAll(tasks);
+				await allTasks;
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.Message);
+				// На тот случай если исключений было несколько залоггируем их все
+				Console.WriteLine($"IsFaulted: " + allTasks.IsFaulted);
+				foreach (var inx in allTasks.Exception.InnerExceptions)
+				{
+					Console.WriteLine(inx.Message);
+				}
 			}
-			Console.WriteLine($"Посты с {FirstPostId} по {LastPostId} получены");
 
 			// Перегоняем посты из задач в список исключая те которые не были получены
 			// (если например был какой-нибудь exception)
 			var posts = tasks.Where(t => t.IsFaulted == false).Select(t => t.Result).ToList();
+			Console.WriteLine($"Количество полученных постов: {posts.Count}");
 
 			// Записываем полученные посты в файл
 			try
