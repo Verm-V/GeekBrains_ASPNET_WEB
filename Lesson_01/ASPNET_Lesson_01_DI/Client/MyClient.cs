@@ -48,12 +48,6 @@ namespace ASPNET_Lesson_01_DI.Client
 
 			try
 			{
-				//// !DEBUG выброс исключений для отладки - УБРАТЬ в окончательном варианте
-				//if (request.Id == 4 || request.Id == 8)
-				//{
-				//	//_logger.LogError(ex.Message);
-				//	_ = 1 / (request.Id - request.Id);
-				//}
 
 				var httpRequest = new HttpRequestMessage(
 					HttpMethod.Get,
