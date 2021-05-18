@@ -30,7 +30,7 @@ namespace Persons.Data.Implementation
 
 		public Person GetItem(int id)
 		{
-			throw new NotImplementedException();
+			return persons.FirstOrDefault(x => x.Id == id);
 		}
 
 		public IEnumerable<Person> GetItems()

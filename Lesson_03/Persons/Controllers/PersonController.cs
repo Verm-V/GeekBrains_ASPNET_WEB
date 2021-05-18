@@ -34,11 +34,9 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(id)} = {id}");
 
-			var resultPerson = _personManager.GetItem(id);
-			return Ok(resultPerson);
+			var result = _personManager.GetItem(id);
+			return Ok(result);
 
-
-			return Ok();
 		}
 
 		/// <summary>

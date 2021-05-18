@@ -13,6 +13,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Persons.Data.Implementation;
+using Persons.Data.Interfaces;
+using Persons.Domain.Implementation;
+using Persons.Domain.Interfaces;
 
 namespace Persons
 {
@@ -56,6 +60,9 @@ namespace Persons
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 				c.IncludeXmlComments(xmlPath);
 			});
+
+			services.AddScoped<IPersonRepository, PersonRepository>();
+			services.AddScoped<IPersonManager, PersonManager>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
