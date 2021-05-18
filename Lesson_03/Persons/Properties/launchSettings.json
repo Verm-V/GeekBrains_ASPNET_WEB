@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TimeSheets": {
+    "Persons": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "",
