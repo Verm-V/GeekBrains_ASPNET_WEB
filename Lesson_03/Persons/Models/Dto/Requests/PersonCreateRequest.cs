@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TimeSheets.Models.Dto.Requests
+namespace Persons.Models.Dto.Requests
 {
 	/// <summary>Запрос на добавление человека в базу данных</summary>
 	public class PersonCreateRequest

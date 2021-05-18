@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TimeSheets.Models.Dto.Requests
+namespace Persons.Models.Dto.Requests
 {
 	/// <summary>Запрос на изменение данных о человеке в базе</summary>
 	public class PersonUpdateRequest

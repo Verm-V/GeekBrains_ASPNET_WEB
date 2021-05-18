@@ -5,19 +5,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeSheets.Models.Dto.Requests;
+using Persons.Domain.Interfaces;
+using Persons.Models.Dto.Requests;
 
-namespace TimeSheets.Controllers
+namespace Persons.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
 	public class PersonsController : ControllerBase
 	{
 		private readonly ILogger<PersonsController> _logger;
+		private readonly IPersonManager _personManager;
 
-		public PersonsController(ILogger<PersonsController> logger)
+		public PersonsController(ILogger<PersonsController> logger, IPersonManager personManager)
 		{
 			_logger = logger;
+			_personManager = personManager;
 		}
 
 		/// <summary>
@@ -30,6 +33,10 @@ namespace TimeSheets.Controllers
 		{
 			_logger.LogDebug("Params: " +
 				$"{nameof(id)} = {id}");
+
+			var resultPerson = _personManager.GetItem(id);
+			return Ok(resultPerson);
+
 
 			return Ok();
 		}

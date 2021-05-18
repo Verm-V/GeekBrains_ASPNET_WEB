@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TimeSheets.Models
+namespace Persons.Models
 {
 	/// <summary>Класс описывающий человека</summary>
 	public class Person
