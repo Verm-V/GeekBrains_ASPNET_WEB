@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 
 namespace Persons.Models.Dto.Requests
 {
-	/// <summary>Запрос на изменение данных о человеке в базе</summary>
-	public class PersonUpdateRequest
+	/// <summary>Запрос на добавление человека в базу данных</summary>
+	public class PersonRequest
 	{
-		/// <summary>Id</summary>
-		public int Id { get; set; }
 		/// <summary>Имя</summary>
 		public string FirstName { get; set; }
 		/// <summary>Фамилия</summary>
@@ -27,8 +25,7 @@ namespace Persons.Models.Dto.Requests
 		/// <returns>Текстовое представление параметров запроса</returns>
 		public override string ToString()
 		{
-			return $"{nameof(Id)}: {Id}{Environment.NewLine}" +
-				$"{nameof(FirstName)}: {FirstName}{Environment.NewLine}" +
+			return $"{nameof(FirstName)}: {FirstName}{Environment.NewLine}" +
 				$"{nameof(LastName)}: {LastName}{Environment.NewLine}" +
 				$"{nameof(Email)}: {Email}{Environment.NewLine}" +
 				$"{nameof(Company)}: {Company}{Environment.NewLine}" +

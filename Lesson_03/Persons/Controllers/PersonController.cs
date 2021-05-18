@@ -76,7 +76,7 @@ namespace Persons.Controllers
 		/// <param name="request">DTO запроса на создание человека в базе</param>
 		/// <returns>Id созданного человека</returns>
 		[HttpPost]
-		public IActionResult CreatePerson([FromBody] PersonCreateRequest request)
+		public IActionResult CreatePerson([FromBody] PersonRequest request)
 		{
 			_logger.LogDebug($"Params: {Environment.NewLine}" +
 				$"{request.ToString()}");
@@ -90,9 +90,10 @@ namespace Persons.Controllers
 		/// <param name="request">DTO запроса на изменение данных человека в базе</param>
 		/// <returns>Id измененного человека</returns>
 		[HttpPut]
-		public IActionResult UpdatePerson([FromBody] PersonUpdateRequest request)
+		public IActionResult UpdatePerson([FromQuery] int id, [FromBody] PersonRequest request)
 		{
 			_logger.LogDebug($"Params: {Environment.NewLine}" +
+				$"{nameof(id)}: {id} {Environment.NewLine}" +
 				$"{request.ToString()}");
 
 			return Ok();

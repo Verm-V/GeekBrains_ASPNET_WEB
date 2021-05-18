@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Domain\Implementation\" />
     <Folder Include="Domain\Interfaces\" />
   </ItemGroup>
