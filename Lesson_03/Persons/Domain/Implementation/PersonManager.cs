@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Persons.Data.Interfaces;
 using Persons.Domain.Interfaces;
 using Persons.Models;
+using Persons.Models.Dto.Requests;
 
 namespace Persons.Domain.Implementation
 {
@@ -17,9 +18,35 @@ namespace Persons.Domain.Implementation
 			_personRepository = personRepository;
 		}
 
-		public Person GetItem(int id)
+		public int CreatePerson(PersonRequest request)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool DeletePerson(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Person FindPerson(string name)
+		{
+
+			throw new NotImplementedException();
+		}
+
+		public Person GetPerson(int id)
 		{
 			return _personRepository.GetItem(id);
+		}
+
+		public List<Person> GetPersonsList(int skip, int take)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool UpdatePerson(PersonRequest request)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

@@ -34,7 +34,7 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(id)} = {id}");
 
-			var result = _personManager.GetItem(id);
+			var result = _personManager.GetPerson(id);
 			return Ok(result);
 
 		}
@@ -50,7 +50,15 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(searchTerm)} = {searchTerm}");
 
-			return Ok();
+			if(searchTerm.Length != 0)
+			{
+				var result = _personManager.FindPerson(searchTerm);
+				return Ok(result);
+			}
+			else
+			{
+				return BadRequest();
+			}
 		}
 
 
@@ -61,13 +69,14 @@ namespace Persons.Controllers
 		/// <param name="take">Количество людей в выборке</param>
 		/// <returns>Информация о запрашиваемом человеке</returns>
 		[HttpGet]
-		public IActionResult GetPersonsList([FromQuery] int? skip, [FromQuery] int? take)
+		public IActionResult GetPersonsList([FromQuery] int skip, [FromQuery] int take)
 		{
 			_logger.LogDebug("Params: " +
-				$"{nameof(skip)} = {(skip.HasValue ? skip.Value.ToString() : "n/a")} " +
-				$"{nameof(take)} = {(take.HasValue ? take.Value.ToString() : "n/a")} ");
+				$"{nameof(skip)} = {skip} " +
+				$"{nameof(take)} = {take} ");
 
-			return Ok();
+			var result = _personManager.GetPersonsList(skip, take);
+			return Ok(result);
 		}
 
 		/// <summary>
@@ -79,8 +88,9 @@ namespace Persons.Controllers
 		public IActionResult CreatePerson([FromBody] PersonRequest request)
 		{
 			_logger.LogDebug($"Params: {Environment.NewLine}" +
-				$"{request.ToString()}");
+				$"{request}");
 
+			var id = _personManager.CreatePerson(request);
 			return Ok();
 		}
 
@@ -94,9 +104,10 @@ namespace Persons.Controllers
 		{
 			_logger.LogDebug($"Params: {Environment.NewLine}" +
 				$"{nameof(id)}: {id} {Environment.NewLine}" +
-				$"{request.ToString()}");
+				$"{request}");
 
-			return Ok();
+			var status = _personManager.UpdatePerson(request);
+			return status ? (IActionResult)Ok() : (IActionResult)BadRequest();
 		}
 
 		/// <summary>
@@ -110,7 +121,8 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(id)} = {id}");
 
-			return Ok();
+			var status = _personManager.DeletePerson(id);
+			return status ? (IActionResult)Ok() : (IActionResult)BadRequest();
 		}
 
 
