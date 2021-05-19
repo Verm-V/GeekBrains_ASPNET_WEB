@@ -9,10 +9,19 @@ namespace Persons.Data.Implementation
 {
 	public class PersonRepository : IPersonRepository
 	{
+		public int LastId => GeneratedData.data.Last().Id;
 
-		public void Add()
+		public bool Add(Person item)
 		{
-			throw new NotImplementedException();
+			GeneratedData.data.Add(item);
+			return true;
+		}
+
+		public bool Delete(int id)
+		{
+			var index = GeneratedData.data.IndexOf(GeneratedData.data.FirstOrDefault(item => item.Id == id));
+			GeneratedData.data.RemoveAt(index);
+			return true;
 		}
 
 		public Person GetItem(int id)
@@ -20,12 +29,12 @@ namespace Persons.Data.Implementation
 			return GeneratedData.data.FirstOrDefault(x => x.Id == id);
 		}
 
-		public IEnumerable<Person> GetItems()
+		public IEnumerable<Person> GetItems(int skip, int take)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update()
+		public bool Update(Person item)
 		{
 			throw new NotImplementedException();
 		}

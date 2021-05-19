@@ -17,6 +17,8 @@ using Persons.Data.Implementation;
 using Persons.Data.Interfaces;
 using Persons.Domain.Implementation;
 using Persons.Domain.Interfaces;
+using AutoMapper;
+using Persons.Models;
 
 namespace Persons
 {
@@ -32,6 +34,7 @@ namespace Persons
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			// Контроллеры
 			services.AddControllers();
 
 			// Swagger
@@ -61,8 +64,15 @@ namespace Persons
 				c.IncludeXmlComments(xmlPath);
 			});
 
+			// Репозиторий
 			services.AddScoped<IPersonRepository, PersonRepository>();
+			// Менеджер
 			services.AddScoped<IPersonManager, PersonManager>();
+
+			// Автомаппер
+			var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
+			var mapper = mapperConfiguration.CreateMapper();
+			services.AddSingleton(mapper);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

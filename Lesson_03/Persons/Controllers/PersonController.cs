@@ -91,13 +91,14 @@ namespace Persons.Controllers
 				$"{request}");
 
 			var id = _personManager.CreatePerson(request);
-			return Ok();
+			return Ok(id);
 		}
 
 		/// <summary>
 		/// Изменение параметров человека в базе
 		/// </summary>
 		/// <param name="request">DTO запроса на изменение данных человека в базе</param>
+		/// <param name="id">Id человека данные которогу нужно изменить</param>
 		/// <returns>Id измененного человека</returns>
 		[HttpPut]
 		public IActionResult UpdatePerson([FromQuery] int id, [FromBody] PersonRequest request)
@@ -106,7 +107,7 @@ namespace Persons.Controllers
 				$"{nameof(id)}: {id} {Environment.NewLine}" +
 				$"{request}");
 
-			var status = _personManager.UpdatePerson(request);
+			var status = _personManager.UpdatePerson(id, request);
 			return status ? (IActionResult)Ok() : (IActionResult)BadRequest();
 		}
 
