@@ -44,7 +44,7 @@ public class Person
 —оздано ASP.NET Core приложение, которое реализует заданный API  
   
 «апущенное приложение и его API можно увидеть здесь: 
-### **[persons.verm-v.ru](persons.verm-v.ru)**  
+### **[persons.verm-v.ru](http://persons.verm-v.ru)**  
 (ѕриложение устанавливалось на VPS из Visual Studio, через Web Deploy на IIS)  
   
 ---  
