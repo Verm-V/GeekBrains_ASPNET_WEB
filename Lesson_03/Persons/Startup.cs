@@ -101,7 +101,7 @@ namespace Persons
 			// по которой будет построен UI).
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "API сервиса агента сбора метрик");
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "API сервиса работы со списком людей");
 				c.RoutePrefix = string.Empty;
 			});
 		}

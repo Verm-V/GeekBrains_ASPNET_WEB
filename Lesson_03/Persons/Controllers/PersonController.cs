@@ -107,8 +107,8 @@ namespace Persons.Controllers
 				$"{nameof(id)}: {id} {Environment.NewLine}" +
 				$"{request}");
 
-			var status = _personManager.UpdatePerson(id, request);
-			return status ? (IActionResult)Ok() : (IActionResult)BadRequest();
+			var isUpdated = _personManager.UpdatePerson(id, request);
+			return isUpdated ? (IActionResult)Ok() : (IActionResult)BadRequest();
 		}
 
 		/// <summary>
@@ -122,8 +122,8 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(id)} = {id}");
 
-			var status = _personManager.DeletePerson(id);
-			return status ? (IActionResult)Ok() : (IActionResult)BadRequest();
+			var isDeleted = _personManager.DeletePerson(id);
+			return isDeleted ? (IActionResult)Ok() : (IActionResult)BadRequest();
 		}
 
 

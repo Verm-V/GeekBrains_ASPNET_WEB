@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Persons.Data
 {
 	/// <summary>
-	/// !DEBUG Тестовая коллекция
+	/// Статическая коллекция содержащая сгенерированные данные для задания
 	/// </summary>
 	public static class GeneratedData
 	{

@@ -11,15 +11,14 @@ namespace Persons.Data.Implementation
 	{
 		public int LastId => GeneratedData.data.Max(x => x.Id);
 
-		public bool Add(Person item)
+		public void Add(Person person)
 		{
-			GeneratedData.data.Add(item);
-			return true;
+			GeneratedData.data.Add(person);
 		}
 
 		public bool Delete(int id)
 		{
-			var index = GeneratedData.data.IndexOf(GeneratedData.data.FirstOrDefault(x => x.Id == id));
+			var index = FindIndexById(id);
 			bool isDeleted = false;
 			if (index >=0)
 			{
@@ -29,9 +28,9 @@ namespace Persons.Data.Implementation
 			return isDeleted;
 		}
 
-		public Person FindItem(string name)
+		public Person FindItem(string searchTerm)
 		{
-			return GeneratedData.data.FirstOrDefault(x => x.FirstName == name || x.LastName == name);
+			return GeneratedData.data.FirstOrDefault(x => x.FirstName == searchTerm || x.LastName == searchTerm);
 		}
 
 		public Person GetItem(int id)
@@ -42,26 +41,31 @@ namespace Persons.Data.Implementation
 		public IEnumerable<Person> GetItems(int skip, int take)
 		{
 			// Проверка входных значений
-			skip = skip < 0 ? 0 : skip;
-			take = take < 0 ? 0 : take;
-			if (take > GeneratedData.data.Count - skip)
-			{
-				take = GeneratedData.data.Count - skip;
-			}
+			var count = GeneratedData.data.Count;
+			skip = (skip < 0) ? 0 : skip;
+			skip = (skip > count) ? count : skip;
+			take = (take < 0) ? 0 : take;
+			take = (take > count - skip) ? count - skip : take;
 
 			return GeneratedData.data.GetRange(skip, take);
 		}
 
-		public bool Update(Person item)
+		public bool Update(Person person)
 		{
-			var index = GeneratedData.data.IndexOf(GeneratedData.data.FirstOrDefault(x => x.Id == item.Id));
+			var index = FindIndexById(person.Id);
 			bool isUpdated = false;
 			if (index >=0)
 			{
-				GeneratedData.data[index] = item;
+				GeneratedData.data[index] = person;
 				isUpdated = true;
 			}
 			return isUpdated;
 		}
+
+		private int FindIndexById(int id)
+		{
+			return GeneratedData.data.IndexOf(GeneratedData.data.FirstOrDefault(x => x.Id == id));
+		}
+
 	}
 }

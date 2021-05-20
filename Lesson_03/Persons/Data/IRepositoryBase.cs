@@ -22,14 +22,13 @@ namespace Persons.Data
 		IEnumerable<T> GetItems(int skip, int take);
 
 		/// <summary>Ищет и возвращает элемент из хранилища по имени</summary>
-		/// <param name="name">Имя искомого элемента</param>
+		/// <param name="searchString">Имя искомого элемента</param>
 		/// <returns>Искомый элемент</returns>
-		T FindItem(string name);
+		T FindItem(string searchString);
 
 		/// <summary>Добавляет элемент в хранилище</summary>
 		/// <param name="item">Элемент который нужно добавить в хранилище</param>
-		/// <returns>Статус операции</returns>
-		bool Add(T item);
+		void Add(T item);
 
 		/// <summary>Изменяет элемент в хранилище</summary>
 		/// <param name="item">Новый элемент взамен старого</param>
