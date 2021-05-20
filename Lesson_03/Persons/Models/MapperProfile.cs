@@ -14,7 +14,7 @@ namespace Persons.Models
 	{
 		public MapperProfile()
 		{
-			CreateMap<Person, PersonRequest>();
+			CreateMap<PersonRequest, Person>();
 		}
 	}
 }

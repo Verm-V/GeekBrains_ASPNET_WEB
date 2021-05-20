@@ -23,7 +23,7 @@ namespace Persons.Domain.Implementation
 
 		public int CreatePerson(PersonRequest request)
 		{
-			var id = _personRepository.LastId;
+			var id = _personRepository.LastId + 1;
 			var person = _mapper.Map<Person>(request);
 			person.Id = id;
 			_personRepository.Add(person);
@@ -37,8 +37,7 @@ namespace Persons.Domain.Implementation
 
 		public Person FindPerson(string name)
 		{
-
-			throw new NotImplementedException();
+			return _personRepository.FindItem(name);
 		}
 
 		public Person GetPerson(int id)

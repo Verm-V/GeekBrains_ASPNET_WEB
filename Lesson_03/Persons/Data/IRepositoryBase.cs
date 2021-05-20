@@ -21,6 +21,11 @@ namespace Persons.Data
 		/// <returns>Коллекция с искомыми элементами</returns>
 		IEnumerable<T> GetItems(int skip, int take);
 
+		/// <summary>Ищет и возвращает элемент из хранилища по имени</summary>
+		/// <param name="name">Имя искомого элемента</param>
+		/// <returns>Искомый элемент</returns>
+		T FindItem(string name);
+
 		/// <summary>Добавляет элемент в хранилище</summary>
 		/// <param name="item">Элемент который нужно добавить в хранилище</param>
 		/// <returns>Статус операции</returns>
