@@ -45,12 +45,12 @@ namespace Persons
 					Version = "v1",
 					Title = "API for Metrics Agent service",
 					Description = "Additional information",
-					TermsOfService = new Uri("https://example.com/"),
+					//TermsOfService = new Uri("https://example.com/"),
 					Contact = new OpenApiContact
 					{
 						Name = "Vasiliy Mykitenko",
 						Email = string.Empty,
-						Url = new Uri("https://example.com/contacts"),
+						Url = new Uri("http://verm-v.ru"),
 					},
 					License = new OpenApiLicense
 					{
@@ -62,6 +62,7 @@ namespace Persons
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 				c.IncludeXmlComments(xmlPath);
+				c.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
 			});
 
 			// Репозиторий
