@@ -14,10 +14,10 @@ namespace Persons.Domain.Interfaces
 		/// <returns>Данные о человеке</returns>
 		Person GetPerson(int id);
 
-		/// <summary>Ищет человека в репозитории по имени</summary>
+		/// <summary>Ищет людей в репозитории по имени</summary>
 		/// <param name="name">Имя искомого человека</param>
-		/// <returns>Данные о человеке</returns>
-		Person FindPerson(string name);
+		/// <returns>Данные о людях подходящих по условиям поиска</returns>
+		IEnumerable<Person> FindPerson(string name);
 
 		/// <summary>Извлекает из репозитория список данных о челвеках</summary>
 		/// <param name="skip">Номер с которого начинать извлечение</param>

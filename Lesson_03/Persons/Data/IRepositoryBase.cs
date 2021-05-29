@@ -24,7 +24,7 @@ namespace Persons.Data
 		/// <summary>Ищет и возвращает элемент из хранилища по имени</summary>
 		/// <param name="searchString">Имя искомого элемента</param>
 		/// <returns>Искомый элемент</returns>
-		T FindItem(string searchString);
+		IEnumerable<T> FindItem(string searchString);
 
 		/// <summary>Добавляет элемент в хранилище</summary>
 		/// <param name="item">Элемент который нужно добавить в хранилище</param>

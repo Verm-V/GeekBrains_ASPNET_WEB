@@ -43,7 +43,7 @@ namespace Persons
 				c.SwaggerDoc("v1", new OpenApiInfo
 				{
 					Version = "v1",
-					Title = "API for Metrics Agent service",
+					Title = "API for Persons service",
 					Description = "Additional information",
 					//TermsOfService = new Uri("https://example.com/"),
 					Contact = new OpenApiContact
@@ -61,7 +61,7 @@ namespace Persons
 				// ”казываем файл из которого брать комментарии дл€ Swagger UI
 				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-				c.IncludeXmlComments(xmlPath);
+				c.IncludeXmlComments(xmlPath, true);
 				c.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.HttpMethod}");
 			});
 

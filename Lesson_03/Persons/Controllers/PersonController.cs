@@ -7,9 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Persons.Domain.Interfaces;
 using Persons.Models.Dto.Requests;
+using Persons.Models;
 
 namespace Persons.Controllers
 {
+	/// <summary>Работа с данными о пользователях</summary>
 	[Route("api/[controller]")]
 	[ApiController]
 	public class PersonsController : ControllerBase
@@ -35,7 +37,14 @@ namespace Persons.Controllers
 				$"{nameof(id)} = {id}");
 
 			var result = _personManager.GetPerson(id);
-			return Ok(result);
+			if(result != null)
+			{
+				return Ok(result);
+			}
+			else
+			{
+				return BadRequest();
+			}
 
 		}
 
@@ -50,15 +59,13 @@ namespace Persons.Controllers
 			_logger.LogDebug("Params: " +
 				$"{nameof(searchTerm)} = {searchTerm}");
 
-			if(searchTerm.Length != 0)
+			IEnumerable<Person> result = new List<Person>();
+
+			if(searchTerm != null)
 			{
-				var result = _personManager.FindPerson(searchTerm);
-				return Ok(result);
+				result = _personManager.FindPerson(searchTerm);
 			}
-			else
-			{
-				return BadRequest();
-			}
+			return Ok(result);
 		}
 
 

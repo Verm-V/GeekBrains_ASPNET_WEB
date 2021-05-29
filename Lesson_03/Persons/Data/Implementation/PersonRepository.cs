@@ -28,9 +28,9 @@ namespace Persons.Data.Implementation
 			return isDeleted;
 		}
 
-		public Person FindItem(string searchTerm)
+		public IEnumerable<Person> FindItem(string searchTerm)
 		{
-			return GeneratedData.data.FirstOrDefault(x => x.FirstName == searchTerm || x.LastName == searchTerm);
+			return GeneratedData.data.Where(x => x.FirstName == searchTerm || x.LastName == searchTerm).ToList();
 		}
 
 		public Person GetItem(int id)

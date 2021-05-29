@@ -35,7 +35,7 @@ namespace Persons.Domain.Implementation
 			return _personRepository.Delete(id);
 		}
 
-		public Person FindPerson(string name)
+		public IEnumerable<Person> FindPerson(string name)
 		{
 			return _personRepository.FindItem(name);
 		}
